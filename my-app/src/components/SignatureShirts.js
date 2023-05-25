@@ -1,6 +1,6 @@
 import React from "react";
 import image from "../images/sweatshirt.png"
-import "../App.css";
+import "../styles/style.css"
 
 
 const SignatureShirts = () => {

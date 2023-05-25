@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink, Route, Routes, useLocation } from "react-router-dom";
 import HomePage from "./HomePage";
 import ProdDetails from "./ProductDetails";
+import "../styles/style.css"
 
 const Header = () => {
 
