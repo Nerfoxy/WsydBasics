@@ -5,10 +5,9 @@ import "../App.css";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
-const ProdPage = () => {
+const ProductDetails = () => {
   return (
     <>
-      <Header />
       <div className="detail-container">
       <div className="image-container">
       <Carousel>
@@ -96,4 +95,4 @@ const ProdPage = () => {
     </>
   );
 };
-export default ProdPage;
+export default ProductDetails;

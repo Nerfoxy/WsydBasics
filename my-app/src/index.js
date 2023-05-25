@@ -1,14 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
+import DesignSystem from './DesignSystem';
 import { BrowserRouter } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
+import SystemDesgin from './DesignSystem';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
      <BrowserRouter>
-    <App/>
+      <SystemDesgin/>
     </BrowserRouter>
   </React.StrictMode>
 );
