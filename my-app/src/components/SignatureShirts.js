@@ -1,5 +1,5 @@
 import React from "react";
-import image from "../images/sweatshirt.jpg"
+import image from "../images/sweatshirt.png"
 import "../App.css";
 
 

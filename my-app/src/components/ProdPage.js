@@ -1,6 +1,6 @@
 import React from "react";
 import Header from "./Header";
-import image from "../images/sweatshirt.jpg";
+import image from "../images/sweatshirt.png";
 import "../App.css";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
