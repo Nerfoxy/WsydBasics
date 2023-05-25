@@ -1,0 +1,17 @@
+.headerContainer {
+  background-color: black;
+  height: 100px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+.headerContainer .headerNav {
+  margin: 0px auto;
+  color: white;
+  font-size: 20px;
+  width: 50%;
+  background-color: red;
+}
+.headerContainer .headerNav .header_titles {
+  margin: 20px;
+}/*# sourceMappingURL=style.css.map */
