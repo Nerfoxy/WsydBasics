@@ -6,8 +6,16 @@ const Footer = () => {
 
 
     return (
-        <div className="FooterContainer">
-        FOOOTER
+        <div className="footerContainer">
+            <div className="footerListContainer">
+                <div className="footerList">
+                    Teste
+                </div>
+   
+
+
+            </div>
+
         </div>
     );
 }
