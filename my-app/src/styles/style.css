@@ -1,3 +1,7 @@
+.notification-bar {
+  height: 2rem;
+}
+
 .container {
   background-color: black;
 }
@@ -10,24 +14,35 @@
   justify-content: space-between;
 }
 
+.title-navigation-container {
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+}
+
 .title-container {
   color: #ffb900;
-  width: 33%;
+  width: 30%;
+  margin-left: 5%;
 }
 
 .navigation-container {
   display: flex;
   justify-content: center;
   color: white;
-  width: 33%;
+  width: 50%;
   align-items: center;
 }
 
 .navigation-container a {
   text-align: center;
   font-weight: bold;
+  text-decoration: none;
+  color: white;
   cursor: pointer;
-  width: 100%;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: auto;
 }
 
 .login {
@@ -51,20 +66,14 @@
   display: flex;
 }
 
-.buttonWelcome {
-  background-color: inherit;
-  padding: 10px;
-  border: 2px solid black;
-  font-weight: bold;
-  font-size: 12px;
-  cursor: pointer;
-}
-
 .visualContainer {
   margin-left: auto;
   margin-right: auto;
   align-items: center;
   width: 100%;
+  color: white;
+  font-weight: bold;
+  background-image: url("../images/background.jpg");
   background-size: cover;
   border: 2px solid black;
 }
@@ -98,6 +107,16 @@
   margin-right: auto;
   width: 60%;
   text-align: center;
+}
+
+.buttonWelcome {
+  background-color: inherit;
+  padding: 10px;
+  border: 2px solid white;
+  color: white;
+  font-weight: bold;
+  font-size: 12px;
+  cursor: pointer;
 }
 
 .signature-container {
@@ -275,4 +294,27 @@
 
 .table-container td {
   text-align: center;
+}
+
+.arrivals-container {
+  display: flex;
+  flex-direction: row;
+}
+.arrivals-container .product-card {
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.new-arrivals {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.new-arrivals h1 {
+  text-align: center;
+  width: -moz-fit-content;
+  width: fit-content;
 }/*# sourceMappingURL=style.css.map */
