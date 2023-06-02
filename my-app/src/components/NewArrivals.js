@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import image from "../images/sweatshirt.png"
 import "../styles/style.css"
 
@@ -8,6 +9,7 @@ const NewArrivals = () => {
     <div className="new-arrivals">
     <h1>New Arrivals</h1>
     <div className="arrivals-container">
+      <NavLink to="/WholeSale" className="prod-link">
       <div className="product-card">
         <div className="card-image">
           <img src={image} alt="" />
@@ -17,6 +19,8 @@ const NewArrivals = () => {
           <p>from 14€</p>
         </div>
       </div>
+      </NavLink>
+      <NavLink to="/WholeSale" className="prod-link">
       <div className="product-card">
         <div className="card-image">
           <img src={image} alt="" />
@@ -26,6 +30,8 @@ const NewArrivals = () => {
           <p>from 14€</p>
         </div>
       </div>
+      </NavLink>
+      <NavLink to="/WholeSale" className="prod-link">
       <div className="product-card">
         <div className="card-image">
           <img src={image} alt="" />
@@ -35,6 +41,8 @@ const NewArrivals = () => {
           <p>from 14€</p>
         </div>
       </div>
+      </NavLink>
+      <NavLink to="/WholeSale" className="prod-link">
       <div className="product-card">
         <div className="card-image">
           <img src={image} alt="" />
@@ -44,6 +52,8 @@ const NewArrivals = () => {
           <p>from 14€</p>
         </div>
       </div>
+      </NavLink>
+      <NavLink to="/WholeSale" className="prod-link">
       <div className="product-card">
         <div className="card-image">
           <img src={image} alt="" />
@@ -53,6 +63,8 @@ const NewArrivals = () => {
           <p>from 14€</p>
         </div>
       </div>
+      </NavLink>
+      <NavLink to="/WholeSale" className="prod-link">
       <div className="product-card">
         <div className="card-image">
           <img src={image} alt="" />
@@ -62,6 +74,7 @@ const NewArrivals = () => {
           <p>from 14€</p>
         </div>
       </div>
+      </NavLink>
     </div>
     </div>
   );

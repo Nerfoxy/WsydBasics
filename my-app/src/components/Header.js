@@ -38,7 +38,9 @@ const Header = () => {
           </div>
           <div className="login">
             <a>Login</a>
+            <NavLink to="/wishlist" className="header_titles">
             <a>Wishlist</a>
+              </NavLink>
           </div>
         </div>
       </div>
