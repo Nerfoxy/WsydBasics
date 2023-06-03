@@ -2,7 +2,7 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 
-const firebaseConfig = {
+export  const firebaseConfig = {
   apiKey: "AIzaSyCBP4CGfwN9-Qgh4x1f0PJUbEVIvx5celA",
   authDomain: "wsyd-almaproud.firebaseapp.com",
   databaseURL: "https://wsyd-almaproud-default-rtdb.firebaseio.com",

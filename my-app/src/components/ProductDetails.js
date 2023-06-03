@@ -1,21 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import Header from "./Header";
-import image from "../images/sweatshirt.png";
-import "../App.css";
+import { useNavigate, Link } from "react-router-dom";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-import { getFirestore, collection, addDoc } from "firebase/firestore";
+import { products } from "./productData";
+import image from "../images/sweatshirt.png";
+import "../App.css";
 
-import { firebaseConfig } from "./firebaseConfig";
-
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-const db = getFirestore(app);
-
-const ProductDetails = ({ addToCart }) => {
+const ProductDetails = () => {
   const [selectedSize, setSelectedSize] = useState("Small");
   const [selectedQuantity, setSelectedQuantity] = useState(1);
   const [selectedColor, setSelectedColor] = useState("Black");
@@ -37,22 +28,13 @@ const ProductDetails = ({ addToCart }) => {
   const navigate = useNavigate();
 
   const handleAddToCart = () => {
-    const product = {
-      name: "T-Shirt",
-      price: calculatePrice(),
-      size: selectedSize,
-      quantity: selectedQuantity,
-      color: selectedColor,
-    };
-    addDoc(collection(db, "products"), product)
-      .then((docRef) => {
-        console.log("Product added with ID:", docRef.id);
-      })
-      .catch((error) => {
-        console.error("Error adding product:", error);
-      });
-
-    addToCart(product); // Call the addToCart function from props
+    const selectedProduct = products.find((product) => product.id === 1); // Update the product ID according to your needs
+    if (selectedProduct) {
+      selectedProduct.size = selectedSize;
+      selectedProduct.quantity = selectedQuantity;
+      selectedProduct.color = selectedColor;
+      addToCart(selectedProduct);
+    }
     navigate("/wishlist");
   };
 
@@ -80,6 +62,12 @@ const ProductDetails = ({ addToCart }) => {
     return price * selectedQuantity;
   };
 
+  const addToCart = (product) => {
+    const cartItems = JSON.parse(sessionStorage.getItem("cartItems")) || [];
+    cartItems.push(product);
+    sessionStorage.setItem("cartItems", JSON.stringify(cartItems));
+  };
+
   return (
     <>
       <div className="detail-container">
@@ -91,139 +79,66 @@ const ProductDetails = ({ addToCart }) => {
             <div className="carousel-images-container">
               <img src={image} alt="" />
             </div>
-            <div className="carousel-images-container">
-              <img src={image} alt="" />
-            </div>
-            <div className="carousel-images-container">
-              <img src={image} alt="" />
-            </div>
-            <div className="carousel-images-container">
-              <img className="carousel-image" src={image} alt="" />
-            </div>
           </Carousel>
         </div>
-        <div className="details">
-          <div className="title">
-            <h1>T-Shirt</h1>
-          </div>
-          <p>{price}€</p>
-          <p>Size:</p>
-          <div className="size-buttons">
-            <button
-              onClick={() => setSelectedSize("Small")}
-              className={`size-button ${selectedSize === "Small" ? "selected" : ""}`}
-            >
-              Small
-            </button>
-            <button
-              onClick={() => setSelectedSize("Medium")}
-              className={`size-button ${selectedSize === "Medium" ? "selected" : ""}`}
-            >
-              Medium
-            </button>
-            <button
-              onClick={() => setSelectedSize("Large")}
-              className={`size-button ${selectedSize === "Large" ? "selected" : ""}`}
-            >
-              Large
-            </button>
-            <button
-              onClick={() => setSelectedSize("XL")}
-              className={`size-button ${selectedSize === "XL" ? "selected" : ""}`}
-            >
-              XL
-            </button>
-            <button
-              onClick={() => setSelectedSize("2XL")}
-              className={`size-button ${selectedSize === "2XL" ? "selected" : ""}`}
-            >
-              2XL
-            </button>
-            <button
-              onClick={() => setSelectedSize("3XL")}
-              className={`size-button ${selectedSize === "3XL" ? "selected" : ""}`}
-            >
-              3XL
-            </button>
-          </div>
-          <div className="color">
-            <p>Color:</p>
-            <div className="color-boxes">
-              <div
-                className={`color-box ${selectedColor === "Black" ? "selected" : ""}`}
-                style={{ backgroundColor: "black" }}
-                onClick={() => handleColorChange("Black")}
-              ></div>
-              <div
-                className={`color-box ${selectedColor === "Red" ? "selected" : ""}`}
-                style={{ backgroundColor: "red" }}
-                onClick={() => handleColorChange("Red")}
-              ></div>
-              <div
-                className={`color-box ${selectedColor === "Blue" ? "selected" : ""}`}
-                style={{ backgroundColor: "blue" }}
-                onClick={() => handleColorChange("Blue")}
-              ></div>
-              <div
-                className={`color-box ${selectedColor === "Green" ? "selected" : ""}`}
-                style={{ backgroundColor: "green" }}
-                onClick={() => handleColorChange("Green")}
-              ></div>
-              <div
-                className={`color-box ${selectedColor === "Yellow" ? "selected" : ""}`}
-                style={{ backgroundColor: "yellow" }}
-                onClick={() => handleColorChange("Yellow")}
-              ></div>
+        <div className="detail-content">
+          <h2 className="title">Product Name</h2>
+          <div className="details">
+            <div className="size">
+              <label htmlFor="size">Size:</label>
+              <select
+                name="size"
+                id="size"
+                value={selectedSize}
+                onChange={(e) => setSelectedSize(e.target.value)}
+              >
+                <option value="Small">Small</option>
+                <option value="Medium">Medium</option>
+                <option value="Large">Large</option>
+              </select>
+            </div>
+            <div className="quantity">
+              <label htmlFor="quantity">Quantity:</label>
+              <input
+                type="number"
+                id="quantity"
+                min="1"
+                max="200"
+                value={selectedQuantity}
+                onChange={(e) => setSelectedQuantity(parseInt(e.target.value))}
+              />
+            </div>
+            <div className="color">
+              <label htmlFor="color">Color:</label>
+              <div className="color-options">
+                <div
+                  className={`color-option ${selectedColor === "Black" ? "active" : ""}`}
+                  style={{ background: "black" }}
+                  onClick={() => handleColorChange("Black")}
+                ></div>
+                <div
+                  className={`color-option ${selectedColor === "White" ? "active" : ""}`}
+                  style={{ background: "white" }}
+                  onClick={() => handleColorChange("White")}
+                ></div>
+                <div
+                  className={`color-option ${selectedColor === "Blue" ? "active" : ""}`}
+                  style={{ background: "blue" }}
+                  onClick={() => handleColorChange("Blue")}
+                ></div>
+              </div>
             </div>
           </div>
-          <div className="qty-button">
-            <button onClick={() => setSelectedQuantity(selectedQuantity - 1)}>
-              -
-            </button>
-            <button>{selectedQuantity}</button>
-            <button onClick={() => setSelectedQuantity(selectedQuantity + 1)}>
-              +
-            </button>
+          <div className="price">
+            <label htmlFor="price">Price:</label>
+            <span id="price">${calculatePrice()}</span>
           </div>
-          <div className="add-cart">
-            <button onClick={handleAddToCart}>Add to Cart</button>
-          </div>
-          <div className="table-container">
-            <table>
-              <thead>
-                <tr>
-                  <th>Quantity</th>
-                  <th>Price</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1-4</td>
-                  <td>47.99€</td>
-                </tr>
-                <tr>
-                  <td>5-19</td>
-                  <td>38.99€</td>
-                </tr>
-                <tr>
-                  <td>20-49</td>
-                  <td>36.89€</td>
-                </tr>
-                <tr>
-                  <td>50-99</td>
-                  <td>34.99€</td>
-                </tr>
-                <tr>
-                  <td>100-200</td>
-                  <td>33.39€</td>
-                </tr>
-                <tr>
-                  <td>200+</td>
-                  <td>32.19€</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          <button className="add-to-cart-button" onClick={handleAddToCart}>
+            Add to Cart
+          </button>
+          <Link to="/wishlist" className="go-to-cart-link">
+            Go to Cart
+          </Link>
         </div>
       </div>
     </>
